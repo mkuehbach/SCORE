@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Basic parameterization &mdash; SCORE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="SCORE 1.0 documentation" href="index.html" />
+    <link rel="next" title="Recrystallization kinetics" href="theoutput.html" />
+    <link rel="prev" title="Learn about the physical background to the model" href="scorephysics.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="theoutput.html" title="Recrystallization kinetics"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scorephysics.html" title="Learn about the physical background to the model"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SCORE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <p>In any case each parameter key and value needs enclosure in two double quotes,i.e. &#8220;Key&#8221; and &#8220;Value&#8221;.
+In <em>.uds</em> files</p>
+<div class="section" id="basic-parameterization">
+<h1>Basic parameterization<a class="headerlink" href="#basic-parameterization" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| ParameterList              || *(ss)        || Parameter, Value</strong></p>
+<div class="line-block">
+<div class="line"><strong>CAEnsembleSize</strong></div>
+<div class="line-block">
+<div class="line">How many automaton domains should be devised. By default the domains are of equal size and become listed into an automaton pool from which the processes pick and execute sequentially the domains.</div>
+<div class="line">The random number generator assures the domains to become differently initialized. This is because each process has a different seed.</div>
+</div>
+<div class="line"><strong>XMAX</strong></div>
+<div class="line-block">
+<div class="line">Determines a global recrystallized volume fraction at which the simulation is stopped, the results postprocessed and the program exits.</div>
+</div>
+<div class="line"><strong>TIMEMAX</strong></div>
+<div class="line-block">
+<div class="line">Serves to stop the simulation as does XMAX control but when a simulated realtime (not program execution time!), is reached.</div>
+<div class="line">Anyhow, the simulation does not simulate growth farther in time than the maximum annealing time provided.</div>
+</div>
+<div class="line"><strong>NMAX</strong></div>
+<div class="line-block">
+<div class="line">Controls the stopping of the simulation after a certain number of integration steps.</div>
+</div>
+<div class="line"><strong>CellSize</strong></div>
+<div class="line-block">
+<div class="line">Reads in as micrometer, defines the edge length, and thus the discretization of the cubic voxel.</div>
+<div class="line">It should be scaled such that even the smallest grain of interest is represented by a sphere equivalent radius of at least 10 cells.</div>
+<div class="line">Cells smaller than 100 nanometer certainly are no longer in accordance with a mesoscopic model at the micron-scale.</div>
+</div>
+<div class="line"><strong>3DCAEdgeLengthInCellsRD</strong></div>
+<div class="line"><strong>3DCAEdgeLengthInCellsND</strong></div>
+<div class="line"><strong>3DCAEdgeLengthInCellsTD</strong></div>
+<div class="line-block">
+<div class="line">Defines the voxelization of each automaton domain, while RD is parallel to x, ND parallel to y, and TD to z, currently limited to 1600 as uint32 is utilized to store the unique assignment of cells and grains</div>
+</div>
+<div class="line"><strong>MeanDefGrainSizeinRD</strong></div>
+<div class="line"><strong>MeanDefGrainSizeinND</strong></div>
+<div class="line"><strong>MeanDefGrainSizeinTD</strong></div>
+<div class="line-block">
+<div class="line">Reads in micron, only of significance when <strong>DefStructureSynthesis</strong> is &#8220;1&#8221;</div>
+</div>
+<div class="line"><strong>DefStructureSynthesis</strong></div>
+<div class="line-block">
+<div class="line">Determines which deformation microstructure synthesis model is desired. &#8220;1&#8221; renders a grid of equally-sized cuboid grains should be constructed, &#8220;2&#8221; constructs discrete Poisson-Voronoi.</div>
+<div class="line">In order to avoid bias, the tessellation is sampled at random from a much larger continuous realization of a Poisson point process.</div>
+</div>
+<div class="line"><strong>MeanDefSizePoissonDiameter</strong></div>
+<div class="line-block">
+<div class="line">Reads in micron, only of significance when <strong>DefStructureSynthesis</strong> is &#8220;2&#8221;</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>NucleationDensityLocalCSR</strong></div>
+<div class="line-block">
+<div class="line">Assuming each domain maps a random point process, how many nuclei would on average be observed in the domain.</div>
+</div>
+<div class="line"><strong>CSRNucleation</strong></div>
+<div class="line-block">
+<div class="line">Allows the placement of bulk nuclei inside the domain when set to either &#8220;1&#8221; or &#8220;2&#8221;.</div>
+<div class="line">&#8220;1&#8221; enforces always the same number of nuclei in each automaton which are placed in space according to random 3D coordinates.</div>
+<div class="line">&#8220;2&#8221; enforces that the domain itself is perceived as framing a much larger Poisson point process from which all points that fall in the domain are taken and mapped on the voxel grid.</div>
+<div class="line">Mind that &#8220;1&#8221; and &#8220;2&#8221; sample slightly different, though uncorrelated point processes. For domains of <strong>EdgeLengthInCells</strong> sizes larger 1000 spatial correlations of the PRNG become an issue. If in doubt test and utilize the MersenneTwister.</div>
+</div>
+<div class="line"><strong>GBNucleation</strong></div>
+<div class="line-block">
+<div class="line">Allows the placement of nuclei at boundaries among deformed grains when set to either &#8220;1&#8221; or &#8220;2&#8221;.</div>
+<div class="line">&#8220;1&#8221; enforces nuclei at all boundaries regardless the disorientation of the two adjoining grains.</div>
+<div class="line">&#8220;2&#8221; enforces nucleation at discrete grain boundaries only to occurr at high-angle boundaries, assuming a default threshold disorientation of 15degree</div>
+</div>
+<div class="line"><strong>GBNucDensity2Number</strong></div>
+<div class="line"><strong>GBNucRhoDiff2Density</strong></div>
+<div class="line-block">
+<div class="line">Currently heuristic grain boundary nucleation rate modeling parameter.</div>
+</div>
+<div class="line"><strong>GBNucMaximumScatter</strong></div>
+<div class="line-block">
+<div class="line">Controls how strongly are grain boundary nuclei at most deviating from the matrix orientation.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>IncubationTimeModel</strong></div>
+<div class="line-block">
+<div class="line">&#8220;1&#8221; assumes nucleation to occur and grow at t=0seconds, i.e. instantaneously/site-saturated.</div>
+<div class="line">&#8220;2&#8221; assumes nuclei to start growing after a delay, the probability distribution of the delay times is a Rayleigh distribution.</div>
+</div>
+<div class="line"><strong>IncubationTimeScatter</strong>
+Scales in seconds the only parameter of the Rayleigh distribution according to which the nuclei become placed.</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>Mobility model</strong></div>
+<div class="line-block">
+<div class="line">Determines as to how the grain boundary mobility is parameterized from a disorientation among two grains.</div>
+<div class="line">&#8220;1&#8221; follows the approach taken by Sebald and Gottstein to leave boundaries separating less than 15deg as practical immobile,</div>
+<div class="line">all others of equal mobility and only to provide the close to 40deg about 111 disorientations in misorientation space an higher value (&#8220;GS&#8221;)</div>
+<div class="line">&#8220;2&#8221; adopts an approach going back to Humphreys and Huang that low-angle grain boundaries are practical immobile only up to a disorientation of several degrees after which a smooth sigmoidal shape is assumed.</div>
+<div class="line"><em>At the moment in this model 2, close to 40°&lt;111&gt; boundaries are not specifically more mobile than other high-angle grain boundaries.</em></div>
+</div>
+</div>
+</div>
+<div class="section" id="output-flags">
+<h1>Output flags<a class="headerlink" href="#output-flags" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><strong>RenderingOfMicrostructure</strong></div>
+<div class="line-block">
+<div class="line">&#8220;0&#8221; no microstructure snapshot is outputted, further speeds up the simulation because minimizing file interaction</div>
+<div class="line">&#8220;2&#8221; 2D zsections of the RDND plane are outputted taken at TD = 0.5, reliable option when the structure evolution is to be judged qualitatively, as one would section in SEM/EBSD</div>
+<div class="line">&#8220;3&#8221; 3D binary files are written with MPI I/O that store the voxelized microstructure. <strong>Mind color model and hint on how to import into visualization environment.</strong></div>
+</div>
+<div class="line"><strong>RenderingColorModel</strong></div>
+<div class="line-block">
+<div class="line">Defines the coloring model of the rendering as this allows directly the RGB triplets to be read into visualization software</div>
+<div class="line">&#8220;1&#8221; disjoint grains with unsigned int IDs</div>
+<div class="line">&#8220;2&#8221; IPFZ coloring with aka inverse polefigure coloring.</div>
+<div class="line"><em>Please mind that the details (white point location, RGB gradients) differ from vendor to vendor.</em></div>
+<div class="line"><em>For details consider the code and mind the possibility of stretching the RGB gradient asymmetrically over the standard triangle.</em></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>RenderingBoundaries</strong></div>
+<div class="line-block">
+<div class="line">Allows to identify all voxel located at a boundary among deformed grains to be plot when set to &#8220;1&#8221;.</div>
+<div class="line"><em>As with generating 3D raw data, these options should be omitted whenever possible to reduce file interaction, MPI I/O is utilized.</em></div>
+</div>
+<div class="line"><strong>OutputLogBoundaries</strong></div>
+<div class="line-block">
+<div class="line">If set to &#8220;1&#8221; a file detailing all connected voxel the form a discrete grain boundary patch are outputted with properties of the adjointing grains.</div>
+</div>
+<div class="line"><strong>OutputSingleGrainStats</strong></div>
+<div class="line-block">
+<div class="line">When set to &#8220;1&#8221; renders for each automaton a detailed history of how all grains have evolved to study impingement topologies and growth concurrencies.</div>
+</div>
+<div class="line"><strong>OutputOfHPF</strong></div>
+<div class="line-block">
+<div class="line">Calculate host grain distance function as detailed in the model description that can be found in the reference section.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>OutputRXFrontStats</strong></div>
+<div class="line-block">
+<div class="line"><em>Developers option: when set to &#8220;1&#8221; all CA! output detailed loginformation on the status of their interface cell list.</em></div>
+<div class="line"><em>This can help to find minimal sized container lengths in order to optimize further program performance and to reduce the dynamic memory footprint.</em></div>
+<div class="line"><em>The basic idea of the automaton is that it accumulates a linear container of interface cells and runs two managing list that store positions</em></div>
+<div class="line"><em>in this container that can be written to safely or which have recrystallized strongly enough to infect new cells. These lists are maintained throughout each simulation step.</em></div>
+<div class="line"><em>The purpose of this list management is to minimize re-allocations and to maximize spatial and temporal locality in the cache lines.</em></div>
+<div class="line"><em>Most microstructure paths S_V(X) tend to have a two-fold characteristic in the way that at the beginning of the transformation when</em></div>
+<div class="line"><em>growth dominates more cells infect neighbors than already recrystallized cells become decommissioned for recycling.</em></div>
+<div class="line"><em>At some point however the area of the RX front that is this umimpinged to grow reduces progressively while at the same time more and more cells become decommissioned/switched off.</em></div>
+<div class="line"><em>Working on a linear array to which always fragments are appended this renders a progressively stronger and fragmented list containing gaps the activity check of which creates unnecessary overhead.</em></div>
+<div class="line"><strong>Mind the defragmentation option</strong> to reduce these gaps and as well the developer functionality <strong>FRAGMENTATION RADAR</strong> which when defined active in the code #define FRAGMENTATION_RADAR</div>
+<div class="line"><em>generates a 2D graph that elucidates the occupancy of the cell array suggesting room for further improvement.</em></div>
+</div>
+</div>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/FragmentationRadar.png"><img alt="_images/FragmentationRadar.png" src="_images/FragmentationRadar.png" style="width: 640.0px; height: 282.8px;" /></a>
+</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">A fragmentation radar is read like a book from the upper left corner to the lower right.</div>
+<div class="line">Each pixel in each horizontal line represents a the average number of active cells in a block of cells <strong>BLOCKLENGTH</strong>.</div>
+<div class="line">Red denotes low activity (fragmented) while black is optimal.</div>
+<div class="line">Each vertikal lines denotes one simulation step.</div>
+</div>
+</div>
+<div class="section" id="integrator-and-performance">
+<h1>Integrator and performance<a class="headerlink" href="#integrator-and-performance" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| IntegratorAccuracy         || *(ss)        || Parameter, Value</strong></p>
+<div class="line-block">
+<div class="line"><strong>MAXFILLPERSTEP</strong></div>
+<div class="line-block">
+<div class="line">Controls the volume increment that the fastest migrating boundary protrudes into a cell. Reducing this value from the default &#8220;0.1&#8221; renders simulations slower,</div>
+<div class="line">as the number of integration steps scales approximately linear. When increased up to its maximum 0.5 cuts integration accuracy.</div>
+</div>
+<div class="line"><strong>RediscretizationSteps</strong></div>
+<div class="line-block">
+<div class="line">Controls into how many equi-sized time steps the interval [0,tmax] becomes rediscretized.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>InitialCacheSizeRXCells</strong></div>
+<div class="line-block">
+<div class="line">How many of all cells in the network should be preallocated to become at some point active in the front.</div>
+<div class="line">For finely discretized automata with even the smallest grains 5-10 cells in spherical equivalent radius values between 0.1-0.2 are sensible defaults.</div>
+<div class="line">The <strong>OutputRXFrontStats</strong> can provide information on how to reduce further this number, in any case however, the automaton reallocates memory cells, if permitted by the operating system, but at the cost of execution speed.</div>
+</div>
+<div class="line"><strong>ReCacheSizeRXCells</strong></div>
+<div class="line-block">
+<div class="line">Controls with how many elements the cell container is extended when more cells become active then expected. In such case, the smaller <strong>ReCacheSiteRXCells</strong> the more potential small reallocations.</div>
+</div>
+</div>
+</div>
+<div class="section" id="material-properties">
+<h1>Material properties<a class="headerlink" href="#material-properties" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| MaterialProperties         || *(ss)                        || Parameter, Value</strong></p>
+<div class="line-block">
+<div class="line"><strong>ZeroKelvinShearModulusG0</strong></div>
+<div class="line-block">
+<div class="line">Reads in Pascal, mind at zero Kelvin!</div>
+</div>
+<div class="line"><strong>FirstOrderdG0dT</strong></div>
+<div class="line-block">
+<div class="line">Reads in Pascal, linear shear modulus temperature coefficient</div>
+</div>
+<div class="line"><strong>ZeroCelsiusBurgersVector</strong></div>
+<div class="line-block">
+<div class="line">Reads in meter, mind at zero degree Celsius!</div>
+</div>
+<div class="line"><strong>AlloyConstantThermalExpCoeff</strong></div>
+<div class="line"><strong>FirstOrderThermalExpCoeff</strong></div>
+<div class="line"><strong>SecondOrderThermalExpCoeff</strong></div>
+<div class="line-block">
+<div class="line">Thermal lattice expansion coefficients appearing in Willey&#8217;s model, C constants see Hatch JE, Aluminum, see also Touloukian.</div>
+</div>
+<div class="line"><strong>MeltingTemperature</strong></div>
+<div class="line-block">
+<div class="line">Reads in degrees Celsius!</div>
+</div>
+</div>
+</div>
+<div class="section" id="grain-boundary-migration">
+<h1>Grain boundary migration<a class="headerlink" href="#grain-boundary-migration" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line"><strong>LAGBm0</strong></div>
+<div class="line-block">
+<div class="line">Reads in m^4/Js, Preexponential factor intrinsic mobility of low-angle boundaries, default truncation at 15degrees disorientation among adjoining grains</div>
+</div>
+<div class="line"><strong>LAGBHact</strong></div>
+<div class="line-block">
+<div class="line">Reads in eV, activation enthalpy low-angle grain boundaries</div>
+</div>
+<div class="line"><strong>HAGBm0</strong></div>
+<div class="line"><strong>HAGBHact</strong></div>
+<div class="line"><strong>GSm0</strong></div>
+<div class="line"><strong>GSHact</strong></div>
+<div class="line-block">
+<div class="line">Corresponding values for general high-angle grain boundaries, and those special <strong>GS</strong> boundaries close to 40deg111 in misorientation space</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>RHModelHAGBm0</strong></div>
+<div class="line-block">
+<div class="line">Reads in m^4/Js, preexponential factor intrinsic mobility of high-angle boundaries</div>
+</div>
+<div class="line"><strong>RHModelHAGBHact</strong></div>
+<div class="line-block">
+<div class="line">Reads in eV, activation enthalpy high-angle grain boundaries</div>
+</div>
+<div class="line"><strong>RHModelLAGBHAGBCut</strong></div>
+<div class="line"><strong>RHModelLAGBHAGBTrans</strong></div>
+<div class="line"><strong>RHModelLAGBHAGBExponent</strong></div>
+<div class="line-block">
+<div class="line">parameterizes sigmoidal model &#8220;2&#8221; as <strong>m0</strong> * exp(-<strong>Hact</strong>/kT)* (1.0 - <strong>Cut</strong> exp(- <strong>Trans</strong> (DisoriAngle/Trans)^ <strong>Exponent</strong>)</div>
+</div>
+</div>
+</div>
+<div class="section" id="recovery-modelling">
+<h1>Recovery modelling<a class="headerlink" href="#recovery-modelling" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| RecoveryParameter          || *(ss)        || Parameter, Value</strong></p>
+<p><strong>Mind that the following properties have not yet been fully validated!</strong></p>
+<div class="line-block">
+<div class="line"><strong>RecoveryConsider</strong></div>
+<div class="line-block">
+<div class="line">allow for a gradual reduction of the dislocation density to mimic a reduction of the stored energy, choose the rate determin step</div>
+<div class="line">&#8220;1&#8221; Erik Nes&#8217;s lateral jog drift controlled thermally activated glide aka vacancy diffusion controlled</div>
+<div class="line">&#8220;2&#8221; Erik Nes&#8217;s solute diffusion aka drag controlled network growth approach</div>
+<div class="line">All other numbers, no recovery</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>RecoveryVacancyDiffGeometry</strong></div>
+<div class="line-block">
+<div class="line">Vacancy core diffusion model parameter</div>
+</div>
+<div class="line"><strong>RecoveryVacancyDiffPreexp</strong></div>
+<div class="line-block">
+<div class="line">Vacancy core diffusion preexponential</div>
+</div>
+<div class="line"><strong>RecoveryVacancyDiffHact</strong></div>
+<div class="line-block">
+<div class="line">eV, Vacancy core diffusion activation enthalpy</div>
+</div>
+<div class="line"><strong>RecoverySoluteDiffPreexp</strong></div>
+<div class="line-block">
+<div class="line">Solute drag diffusion model preexponential</div>
+</div>
+<div class="line"><strong>RecoverySoluteDiffHact</strong></div>
+<div class="line-block">
+<div class="line">eV, Solute drag diffusion activation enthalpy</div>
+</div>
+<div class="line"><strong>RecoverySoluteLsPropFactor</strong></div>
+<div class="line-block">
+<div class="line">Solute drag solute pinning point distance proportionality factor</div>
+</div>
+<div class="line"><strong>RecoverySoluteConcentration</strong></div>
+<div class="line-block">
+<div class="line">Solute drag solute concentration</div>
+</div>
+<div class="line"><strong>RecoveryParameterAlpha3</strong></div>
+<div class="line-block">
+<div class="line">Nes model alpha3 constant</div>
+</div>
+<div class="line"><strong>RecoveryParameterKappa2</strong></div>
+<div class="line-block">
+<div class="line">Nes model jog separation kappa2 constant</div>
+</div>
+<div class="line"><strong>RecoveryParameterC3</strong></div>
+<div class="line-block">
+<div class="line">Nes model C3 parameter</div>
+</div>
+<div class="line"><strong>RecoveryParameterC4</strong></div>
+<div class="line-block">
+<div class="line">Nes model C4 parameter</div>
+</div>
+<div class="line"><strong>RecoveryParameterC5</strong></div>
+<div class="line-block">
+<div class="line">Nes model C5 parameter</div>
+</div>
+</div>
+<dl class="docutils">
+<dt><strong>following:</strong></dt>
+<dd><div class="first last line-block">
+<div class="line">Nes, E.</div>
+<div class="line">Recovery Revisited</div>
+<div class="line">Acta Metallurgica et Materialia, 1995, 43, 2189-2207</div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/doi:10.1016/0956-7151(94)00409-9">http://dx.doi.org/doi:10.1016/0956-7151(94)00409-9</a></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="particle-drag-modelling">
+<h1>Particle drag modelling<a class="headerlink" href="#particle-drag-modelling" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| ZenerDragParameter         || *(ss)        || Parameter, Value</strong></p>
+<div class="line-block">
+<div class="line"><strong>ZenerConsider</strong></div>
+<div class="line-block">
+<div class="line">Should the classical Zener-Smith drag relation be utilized to simulate slowed grain boundary migration</div>
+<div class="line">&#8220;0&#8221; no</div>
+<div class="line">&#8220;1&#8221; drag is constant for all boundaries in the whole domain, then the dispersion is taken from the first line in <strong>EvoDraggingParticles</strong></div>
+<div class="line">&#8220;2&#8221; drag is time-dependent in accord with the particle dispersion evolution detailed in <strong>EvoDraggingParticles</strong></div>
+</div>
+<div class="line"><strong>ZenerAlpha</strong></div>
+<div class="line-block">
+<div class="line">Prefactor appearing in the various geometric limiting cases, classically 3/2</div>
+</div>
+<div class="line"><strong>ZenerGamma</strong></div>
+<div class="line-block">
+<div class="line">Grain boundary energy 0.324 J/m^2 from Meyers Murr Interfacial</div>
+</div>
+</div>
+</div>
+<div class="section" id="texture-components">
+<h1>Texture components<a class="headerlink" href="#texture-components" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| IdealComponents                    ||      *(sffff)                || Name, IdealcomponentBunge1, IdealcomponentBunge2, IdealcomponentBunge3, IntegrationRange</strong></p>
+<p>Here typical modal orientations that are often identified with Euler space symmetry positions or orientations which show strong maxima in experimental ODFs aka Standardlagen are listed.
+Each orientation in the simulation is categorized to the closest of all these idealcomponents. Is an orientation not included in the integration range specified of any component, it is considered random/phon.</p>
+</div>
+<div class="section" id="microstructure-snapshots">
+<h1>Microstructure snapshots<a class="headerlink" href="#microstructure-snapshots" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| RenderMicrostructure       ||      *(sf)   || Local recrystallized fraction, local value</strong></p>
+<p>Add one line for each automaton-local recrystallized fraction at which microstructure snapshots (either 2D or 3D) should be taken. The format is &#8220;X&#8221; 0.1, i.e. to render at ten percent recrystallized.</p>
+<p><strong>|| RenderOnlyTheseRegions || *(i) || CAID indices start from 0 to n minus one</strong></p>
+<p>List all CA IDs [0, CAEnsembleSize-1] that should be included in the plotting. <strong>This option allows to reduce drastical the amount of snapshots taken and helps reducing file system congestion.</strong></p>
+</div>
+<div class="section" id="annealing-profile-t-t">
+<h1>Annealing profile T(t)<a class="headerlink" href="#annealing-profile-t-t" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| ProcessingSchedule         ||      *(ff)           || time, temperature linearized heating profiles</strong></p>
+<p>For numerical performance it is admissible to coarsen the linearization of measured heating profiles rather than to import thousands of points.</p>
+</div>
+<div class="section" id="deformed-grains-pool">
+<h1>Deformed grains pool<a class="headerlink" href="#deformed-grains-pool" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| DeformedGrainsPool         || *(ffffff)        || Bunge e1, Bunge e2, Bunge e3, rho0, dsubav0, disoriav0</strong></p>
+<p>By default the deformed grain pool provides a list of grains all of which can but not necessarily are required of all properties different.
+Random sampling from this list and placing on sequentially on a 3D grid generates spatially uncorrelated MODF.
+<em>Mind that a departure from the well-known MacKenzie misorientation distribution is per se not a sign of spatial correlation in the case of a non-random ODF, as the MacKenzie distribution is inferred from a random texture!</em></p>
+<dl class="docutils">
+<dt><strong>for the interested reader:</strong></dt>
+<dd><div class="first last line-block">
+<div class="line">Mason, J. K., Schuh, C. A.</div>
+<div class="line">The generalized Mackenzie distribution: Disorientation angle distributions for arbitrary textures</div>
+<div class="line">Acta Materialia, 57, 2007, 4186-4197</div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/doi:10.1016/j.actamat.2009.05.016">http://dx.doi.org/doi:10.1016/j.actamat.2009.05.016</a></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="recrystallized-grains-pool">
+<h1>Recrystallized grains pool<a class="headerlink" href="#recrystallized-grains-pool" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| RXGrainsPool                               || *(ffff)              || Bunge e1, Bunge e2,  Bunge e3, tincub</strong></p>
+<p>By default this is the current way of devising in a flexible manner many different recrystallization nuclei.</p>
+</div>
+<div class="section" id="further-settings">
+<h1>Further settings<a class="headerlink" href="#further-settings" title="Permalink to this headline">¶</a></h1>
+<p><strong>|| HeuristicRXFrontListDefragmentation        ||      *(sf)   || Recrystallized fraction, local value</strong></p>
+<p>This option allows to defragment the cell container by copying explicitly pieces of information from cells far apart from the start of the container to the gap formed by cells which have become decommissioned, i.e. <em>INACTIVE</em>. This allows in the subsequent time steps to reduce the total number of cells that have to be checked, and hence increases performance and cache-locality. Experience has provided sensitive defaults.</p>
+<p><strong>|| EvoDraggingParticles               ||  *(ff)                       || time, fr</strong></p>
+<p>Can be utilized to prescribe the Zener drag by a priori Zener drag simulations. <em>Please mind that strictly speaking when Zener drag affects significantly microstructure transformation it occurs often concurrently to RX which is when such concept</em> <strong>cannot</strong> <em>be applied.</em></p>
+<p><strong>|| SingleGrainVolOverTime     ||  *(sf)               || Recrystallized fraction, local value</strong></p>
+<p>Controls at which automaton-local recrystallized fraction the size of the grains should be measured and stored in main memory such that it can later serve to interpolate the grain size during postprocessing.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Basic parameterization</a></li>
+<li><a class="reference internal" href="#output-flags">Output flags</a></li>
+<li><a class="reference internal" href="#integrator-and-performance">Integrator and performance</a></li>
+<li><a class="reference internal" href="#material-properties">Material properties</a></li>
+<li><a class="reference internal" href="#grain-boundary-migration">Grain boundary migration</a></li>
+<li><a class="reference internal" href="#recovery-modelling">Recovery modelling</a></li>
+<li><a class="reference internal" href="#particle-drag-modelling">Particle drag modelling</a></li>
+<li><a class="reference internal" href="#texture-components">Texture components</a></li>
+<li><a class="reference internal" href="#microstructure-snapshots">Microstructure snapshots</a></li>
+<li><a class="reference internal" href="#annealing-profile-t-t">Annealing profile T(t)</a></li>
+<li><a class="reference internal" href="#deformed-grains-pool">Deformed grains pool</a></li>
+<li><a class="reference internal" href="#recrystallized-grains-pool">Recrystallized grains pool</a></li>
+<li><a class="reference internal" href="#further-settings">Further settings</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="scorephysics.html"
+                        title="previous chapter">Learn about the physical background to the model</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="theoutput.html"
+                        title="next chapter">Recrystallization kinetics</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/parmconfig.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="theoutput.html" title="Recrystallization kinetics"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="scorephysics.html" title="Learn about the physical background to the model"
+             >previous</a> |</li>
+        <li><a href="index.html">SCORE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Markus Kuehbach, IMM, RWTH Aachen University.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

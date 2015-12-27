@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Getting started &mdash; SCORE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="SCORE 1.0 documentation" href="#" />
+    <link rel="next" title="How to get? How to compile?" href="setup.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="setup.html" title="How to get? How to compile?"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">SCORE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="line-block">
+<div class="line">SCORE is an MPI-parallelized 3D cellular automaton for the simulation of microstructure evolution during primary recrystallization in polycrystals.</div>
+<div class="line">The source code is developed by Markus Kühbach at the Institute of Physical Metallurgy and Metal Physics with additional contributions from Luis Antonio Barrales-Mora.</div>
+</div>
+<blockquote>
+<div><div class="figure align-left">
+<a class="reference external image-reference" href="http://www.imm.rwth-aachen.de/index.php?id=88&amp;L=1"><img alt="_images/SCORELogo.jpg" src="_images/SCORELogo.jpg" style="width: 827.0px; height: 177.0px;" /></a>
+</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="section" id="getting-started">
+<h1>1. Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="line-block">
+<div class="line">The compilation of SCORE utilizes standard Linux tools.</div>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">How to get? How to compile?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scorephysics.html">Learn about the physical background to the model</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="parameterization">
+<h1>2. Parameterization<a class="headerlink" href="#parameterization" title="Permalink to this headline">¶</a></h1>
+<p>Parameterizing and setting up advanced recrystallization models can appear cumbersome at first glance owing to the variety of settings and input parameter.
+In order to resolve many of the questions, please find in the following a detailed description of all input parameter to the SCORE model.
+The structure of the <strong>.uds</strong> file identifies where data should be read as strings ( <strong>s</strong> ), integers ( <strong>i</strong> ) or double precision floating point numbers ( <strong>f</strong> ).
+In general, the parameter values are categorized loosely into these groups.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html">Basic parameterization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#output-flags">Output flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#integrator-and-performance">Integrator and performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#material-properties">Material properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#grain-boundary-migration">Grain boundary migration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#recovery-modelling">Recovery modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#particle-drag-modelling">Particle drag modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#texture-components">Texture components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#microstructure-snapshots">Microstructure snapshots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#annealing-profile-t-t">Annealing profile T(t)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#deformed-grains-pool">Deformed grains pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#recrystallized-grains-pool">Recrystallized grains pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parmconfig.html#further-settings">Further settings</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="simulations">
+<h1>3. Simulations<a class="headerlink" href="#simulations" title="Permalink to this headline">¶</a></h1>
+<p>A simulation is issued by the following command line call:</p>
+<div class="highlight-python"><div class="highlight"><pre>mpiexec -n &lt;proc&gt; &lt;scorempi&gt; &lt;Input.uds&gt; &lt;SimulationID&gt;
+</pre></div>
+</div>
+<dl class="docutils">
+<dt><em>&lt;scorempi&gt;</em> denotes the name of the binary file. In its current version two input arguments are necessary:</dt>
+<dd><div class="first last line-block">
+<div class="line">&lt;Input.uds&gt;</div>
+<div class="line-block">
+<div class="line">this is the settings file of <em>uds</em> extension, relative path references are utilized by the program</div>
+</div>
+<div class="line">&lt;SimulationID&gt;</div>
+<div class="line-block">
+<div class="line">this is a positive integer with which all simulation result can be uniquely labeled</div>
+</div>
+<div class="line"><strong>Mind that executing multiple simulations with the same ID in the same directory overwrites unpredictively previously obtained results without prompting!</strong></div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="model-output">
+<h1>4. Model output<a class="headerlink" href="#model-output" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/GenericResultSingleKinetics.jpg"><img alt="_images/GenericResultSingleKinetics.jpg" src="_images/GenericResultSingleKinetics.jpg" style="width: 409.6px; height: 308.4px;" /></a>
+</div>
+</div></blockquote>
+<p>Kinetics, macrotexture and grain size distribution are the key state parameters of interest.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theoutput.html">Recrystallization kinetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoutput.html#macrotexture-evolution">Macrotexture evolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoutput.html#grain-size-distribution">Grain size distribution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoutput.html#d-sections">2D sections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoutput.html#d-data">3D data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoutput.html#single-grain-growth-charts">Single grain growth charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theoutput.html#performance">Performance</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="visualize">
+<h1>5. Visualize<a class="headerlink" href="#visualize" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/TWIP3DCAExample.jpg"><img alt="_images/TWIP3DCAExample.jpg" src="_images/TWIP3DCAExample.jpg" style="width: 512.0px; height: 312.0px;" /></a>
+</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line">The 3D voxelized microstructure snapshots that become generated read as plain implicit 3D arrays.</div>
+<div class="line">As such, they can readily be imported into visualization software, the details how to do so are described below:</div>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="score2pview.html">How to import SCORE .bin files into Paraview?</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><strong>This model:</strong></dt>
+<dd><div class="first last line-block">
+<div class="line">Kühbach, M., Gottstein, G., Barrales-Mora, L.A.</div>
+<div class="line">A Statistical Ensemble Cellular Automaton Microstructure Model for Primary Recrystallization</div>
+<div class="line">submitted to &#8220;Acta Materialia&#8221; on Dec, 27, 2015</div>
+</div>
+</dd>
+</dl>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<dl class="docutils">
+<dt><strong>Funding:</strong></dt>
+<dd><div class="first last line-block">
+<div class="line">The authors gratefully acknowledge the support from the DFG in the frame of the Reinhart Koselleck project (GO 335/44-1).</div>
+<div class="line">Furthermore, we acknowledge the support from the FZJuelich and RWTH Aachen University within the project JARAHPC projects.</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="version-history">
+<h1>Version history<a class="headerlink" href="#version-history" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt><strong>v1.0</strong> first version,</dt>
+<dd><div class="first last line-block">
+<div class="line">with deformed grain boundary detection and nucleation model, Poisson-Voronoi structure, Poissonian nucleation</div>
+<div class="line">site-saturated and time-dependent nucleation, MPI-parallelized, summary statistics and basic voxel structures</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="mpi-openmp-extension">
+<h1>MPI/OpenMP extension<a class="headerlink" href="#mpi-openmp-extension" title="Permalink to this headline">¶</a></h1>
+<p>In addition the code has been modified for thread-parallelism with OpenMP, and the source code is made available in the <strong>SCORE_MPIOMP_20151224.zip</strong> file that resides in the <strong>hybrid</strong> folder. The user is motivated to extract the archive in a separate folder and to build the program as it was described already for the MPI-only version.</p>
+<p>This hybrid SCORE model works as the MPI-parallelized version, and enabled a reduction of the execution time by a factor of 9, at most, as it was benchmarked on a Bullx X5675 Xeon two socket cluster blade system with exclusive usage of the 12 physical cores (OMP_NUM_THREADS=12) and explicitly bound the threads to the cores (KMP_AFFINITY). It is possible already with this model to handle Poissonian nucleation in cuboidal deformed grain structures.</p>
+<p>However, <strong>not all internal functions have already been thread-parallelized, such as the grain boundary identification and grain boundary nucleation, and hence these functionalities are claimed as disfunctional at the moment</strong>.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="openmp.html">Further details for developers.</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="licence">
+<h1>Licence<a class="headerlink" href="#licence" title="Permalink to this headline">¶</a></h1>
+<p>The project is licenced under the GNU v2.0</p>
+</div>
+<div class="section" id="questions-contributions">
+<h1>Questions, contributions<a class="headerlink" href="#questions-contributions" title="Permalink to this headline">¶</a></h1>
+<p>Just let me know or contact <em>markus.kuehbach&#64;rwth-aachen.de</em></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">1. Getting started</a></li>
+<li><a class="reference internal" href="#parameterization">2. Parameterization</a></li>
+<li><a class="reference internal" href="#simulations">3. Simulations</a></li>
+<li><a class="reference internal" href="#model-output">4. Model output</a></li>
+<li><a class="reference internal" href="#visualize">5. Visualize</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+<li><a class="reference internal" href="#version-history">Version history</a></li>
+<li><a class="reference internal" href="#mpi-openmp-extension">MPI/OpenMP extension</a></li>
+<li><a class="reference internal" href="#licence">Licence</a></li>
+<li><a class="reference internal" href="#questions-contributions">Questions, contributions</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="setup.html"
+                        title="next chapter">How to get? How to compile?</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="setup.html" title="How to get? How to compile?"
+             >next</a> |</li>
+        <li><a href="#">SCORE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Markus Kuehbach, IMM, RWTH Aachen University.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

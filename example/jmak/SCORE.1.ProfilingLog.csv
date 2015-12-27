@@ -1,0 +1,2 @@
+MyRank;JobID;tend;Iterations;MPIWTimeDefMS;MPIWTimeGBDetection;MPIWTimeNucleation;MPIWTimeGrowth;MPIWtimeSinceMasterExitedMPIInit;CAnx;CAny;CAnz;CAnxyz;CASvDeformed;CAStoredEnergy/in1E+14;CAnDefSeeds;CAnRXG;CAnIdeal;IdealComponentsDeformation;IdealComponentsNucleiIdentified
+0;0;468.308;309;0.030813;0;0.0420671;5.63865;5.72863;200;200;200;8000000;0;79999999;2;947;3;0;8000000;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;0;0;947;;;;;;;;;;;;;;;;;;;;;;;;;;;

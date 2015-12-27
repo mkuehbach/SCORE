@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Learn about the physical background to the model &mdash; SCORE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="SCORE 1.0 documentation" href="index.html" />
+    <link rel="next" title="Basic parameterization" href="parmconfig.html" />
+    <link rel="prev" title="How to get? How to compile?" href="setup.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="parmconfig.html" title="Basic parameterization"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="setup.html" title="How to get? How to compile?"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SCORE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="learn-about-the-physical-background-to-the-model">
+<h1>Learn about the physical background to the model<a class="headerlink" href="#learn-about-the-physical-background-to-the-model" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference internal image-reference" href="_images/AA8079LCR706min300C.png"><img alt="_images/AA8079LCR706min300C.png" src="_images/AA8079LCR706min300C.png" style="width: 449.0px; height: 271.0px;" /></a>
+</div>
+</div></blockquote>
+<p>Band contrast SEM/EBSD image of an electropolished AA8079 sample after 70% cold-rolling and isothermal annealing at 300 deg C for 6 minutes.
+.. The rolling direction is parallel to the scale bar. Blue denotes grains in cube orientation, high-angle grain boundaries drawn in black.</p>
+<p>Recrystallization and recovery term a variety of deformation microstructure restoration processes during which the stored elastic energy in the deformed microstructure drives the elimination of excess dislocations and the migration of grain boundaries. Specifically the <em>static recrystallization</em> refers to a form of recrystallization which occurs after the deformation was applied. For microstructure evolution during the annealing of cold-rolled sheet material
+this static recrystallization is of significant technical interest. The physical mechanisms and the strength of the driving forces distinguishes it from static recovery and other forms of grain growth.</p>
+<p><strong>Scope of the model:</strong></p>
+<p>The SCORE model is designed for the simulation of the growth of new nuclei under the effect of anisotropic
+grain boundary mobility and heterogeneous deformation microstructures, i.e. for simulating <em>static recrystallization</em>.
+Furthermore, SCORE encompasses approximate models for the nucleation stage. As with every model the nature of the processes is depicted in simplified manner by making the following assumptions:</p>
+<ul class="simple">
+<li>A microstructure volume comprises cubic voxel as the smallest discretization unit.</li>
+<li>The deformation microstructure can be idealized in contiguous regions with homogeneous properties (orientation, dislocation density).</li>
+<li>Therein nuclei appear which are strain- and excess dislocation free.</li>
+<li>Grain boundary migration follows classical rate theory according to Turnbull&#8217;s model.</li>
+<li>Grain boundary migration is simplified as a flat boundary sweeping the deformation structure.</li>
+<li>The intrinsic grain boundary mobility is only dependent on the crystallographic disorientation of the adjoining grains.</li>
+<li>The deformation microstructure remains static in terms of orientation and boundaries content.</li>
+<li>However the (statistically stored) dislocation density is allowed to evolve. This is referred to as recovery modeling, for which approximate physical models exist.</li>
+<li>Recrystallizing nuclei do not rotate or change their orientation during growth.</li>
+<li>A potential growth inhibitating effect of second-phase particles is modeled in accordance with the Zener-Smith theory.</li>
+</ul>
+<p><strong>Relevance of the model:</strong></p>
+<p>These conditions apply well to many cases of cold-rolled aluminium, nickel, copper alloys and steels, but require that the driving force stemming for dislocations is at least an order of magnitude larger than that of curvature.
+Under these conditions the SCORE model can predict the course of microstructure transformation in particular kinetics, indicate potential changes in the macrotexture, resolv spatially the impingement of individual nuclei and hence allows to extract very accurately the grain size distribution. The benefit of the model compared to similar approaches is
+that it enables the simultaneous initialization and execution of multiple computational domains over which the results
+can be averaged or analyzed in all details collectively. This renders the simulations statistical significant
+and sufficiently discretized to minimize bias and to quantify uncertainty that persist to unknown extend in other recrystallization models.</p>
+<dl class="docutils">
+<dt><strong>Further reading:</strong></dt>
+<dd><div class="first line-block">
+<div class="line">Cotterill, P., Mould, P. R.</div>
+<div class="line">Recrystallization and Grain Growth in Metals</div>
+<div class="line">Surrey University Press, London, 1976</div>
+</div>
+<div class="line-block">
+<div class="line">Humphreys, F. J., Hatherly, M.</div>
+<div class="line">Recrystallization and Related Annealing Phenomena</div>
+<div class="line">Pergamon Press, 2003</div>
+<div class="line">ISBN: 978-0-08-044164-1</div>
+</div>
+<div class="line-block">
+<div class="line">Gottstein, G.</div>
+<div class="line">Physical Foundations of Materials Science</div>
+<div class="line">Springer, Berlin, 2010</div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/doi:10.1007/978-3-662-09291-0">http://dx.doi.org/doi:10.1007/978-3-662-09291-0</a></div>
+</div>
+<div class="line-block">
+<div class="line">Gottstein, G., Shvindlerman, L. S.</div>
+<div class="line">Grain Boundary Migration in Metals: Thermodynamics, Kinetics, Applications</div>
+<div class="line">CRC Press, Boca Raton, 2010</div>
+<div class="line">ISBN 9781420054354</div>
+</div>
+<div class="last line-block">
+<div class="line">Hallberg, H.</div>
+<div class="line">Approaches to Modeling of Recrystallization</div>
+<div class="line">Metals, 2011, 1, 16-48</div>
+<div class="line"><a class="reference external" href="http://dx.doi.org/doi:10.3390/met1010016">http://dx.doi.org/doi:10.3390/met1010016</a></div>
+</div>
+</dd>
+</dl>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="setup.html"
+                        title="previous chapter">How to get? How to compile?</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="parmconfig.html"
+                        title="next chapter">Basic parameterization</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/scorephysics.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="parmconfig.html" title="Basic parameterization"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="setup.html" title="How to get? How to compile?"
+             >previous</a> |</li>
+        <li><a href="index.html">SCORE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Markus Kuehbach, IMM, RWTH Aachen University.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

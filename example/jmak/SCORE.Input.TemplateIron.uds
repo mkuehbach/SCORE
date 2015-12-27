@@ -1,0 +1,243 @@
+|| ParameterList        	|| *(ss)        || Parameter, Value
+"CAEnsembleSize"				"1"			// how many cellular automata should be devised
+"XMAX"							"1.000"		// at which point should the integration scheme be stopped at the latest, define tmax in processing profile
+"TIMEMAX"						"36000.0"	// at which point in time should every automaton stop the simulation
+"NMAX"							"100000"	// after which number of integration steps should the scheme be stopped regardless the local X
+"CellSize"						"1.0E+00"	// micron, edge length of one simulation voxel
+"3DCAEdgeLengthInCellsRD"		"200"		// how many cells in each automaton along each edge
+"3DCAEdgeLengthInCellsND"		"200"
+"3DCAEdgeLengthInCellsTD"		"200"
+"MeanDefGrainSizeinRD"			"1.20E+03" 	// micron, average typical or median grain size utilized in the case of 
+"MeanDefGrainSizeinND"			"1.20E+03" 
+"MeanDefGrainSizeinTD"			"1.20E+03"
+"DefStructureSynthesis"			"1"			// 1 - default is cuboid grains the GIA approach, 2 - poisson voronoi, 3 - import CPFEM data not yet correctly implemented
+"MeanDefSizePoissonDiameter"	"24.8"		// micron, becomes interpreted in number of grains and seed points of a structure
+
+"NucleationDensityLocalCSR"		"1000"		// assuming each automaton hosting a complete spatial random point process how many points should be considered
+"CSRNucleation"					"2"			// 1 - csr_enforced, 2 - csr_pickedrandomly, else no
+"GBNucleation"					"0"			// 1 - yes all boundaries, 2 - yes only at high-angle grain boundaries, else no
+"GBNucDensity2Number"			"1.0E-4"	// scales the unit area density as does SCALING_LAMBDA in pp3 analysis into a number of nuclei
+"GBNucRhoDiff2Density"			"5E-14"		// 10.0 over maximum dislocation density in the system
+"GBNucMaximumScatter"			"5.0"		// how strongly are grain boundary nuclei at most deviating from the matrix orientation
+"IncubationTimeModel"			"1"			// 1 site saturated as the default, 2 time dependent
+"IncubationTimeScatter"			"1000.0"	// sigma of a Rayleigh distribution according to which the nuclei become seeded
+
+"MobilityModel"					"2"			// 1 Sebald Gottstein is the default model, 2 Rollett Holm
+
+"RenderingOfMicrostructure"		"3"			// 0 - not at all, 2 - 2D zsection is implicit at half in z direction, 3 - 3D for all in Render Microstructure
+"RenderingColorModel"			"1"			// 1 - disjoint grains with unsigned int IDs, 2 - IPFZ coloring
+"RenderingBoundaries"			"0"			// 1 - identify which voxel is located at a boundaries and to which grain it belongs BE CAREFUL LARGE FILES
+"OutputLogBoundaries"			"1"			// 1 - write detailed file containing all boundaries, else not
+"OutputRXFrontStats"			"1" 		// 1 - yes, all CA output detailed loginformation on the interface cell list, else they dont
+"OutputSingleGrainStats"		"1"			// 1 - yes, all CA output detailed information on the evolution of each grain,  else they dont
+"OutputOfHPF"					"0"			// only for the automata of the MASTER the 3D and 2D HPF is computed
+
+
+|| IntegratorAccuracy		|| *(ss)			|| Parameter, Value
+"MAXFILLPERSTEP"				"0.1"		// how much partial volume of a cell does the fastest boundary sweep in one timestep
+"RediscretizationSteps"			"1000"		// in how many time step should the real time interval tstart to tend be rediscretized
+
+
+|| PerformanceParameter		|| *(ss)			|| Parameter, Value
+"InitialCacheSizeRXCells"		"0.20"		// elaborated guess about how many memory should be reallocated to store active cells, relative value is converted into absolute number of cells per local region 
+"ReCacheSizeRXCells"			"1.0"		// elaborated guess what happens if in the local region more cells become necessary then the memory is expanded by a factor of this times already present memory
+
+
+|| MaterialProperties		|| *(ss)			|| Parameter, Value
+"ZeroKelvinShearModulusG0"		"85.0e9"	// in Pascal
+"FirstOrderdG0dT"				"0.0e9"		// internally overwritten to incorporate pronounced softening towards the transition temperature
+"ZeroCelsiusBurgersVector"		"2.50e-10"	// assume temperature independent taken within range 0 to 800 deg C	
+"AlloyConstantThermalExpCoeff"	"1.0"		// in Willey model, C constants see Hatch JE, Aluminum, see also Touloukian
+"FirstOrderThermalExpCoeff"		"0.0"
+"SecondOrderThermalExpCoeff"	"0.0"			
+"MeltingTemperature"			"800"		// in degrees celsius here chosen as the range of data accuracy
+
+"LAGBm0"						"0.3"		// classical SebaldGottstein mobility model 3584m^4/Js preexponential factor intrinsic mobility of low-angle boundaries, default truncation at 15degrees
+"LAGBHact"						"1.200"		// 1550eV activation enthalpy low-angle grain boundaries disori ij < 15degree eV
+"HAGBm0"						"3.0"		// alike for general high-angle grain boundaries
+"HAGBHact"						"1.200"
+"GSm0"							"3.0"		// boundaries close to 40deg111 in misorientation space
+"GSHact"						"1.200"
+
+"RHModelHAGBm0"					"300.0"		// the model often utilized by Rollett and Holm in which LAGB are practically immobile and a sharp sigmoidal transition of the maximum mobilities to HAGB occurs between 10 and 16 deg
+"RHModelHAGBHact"				"2.45"
+"RHModelLAGBHAGBCut"			"0.9"		// one minus cut times exp minus trans multiplying the quotient disori over lagbhagb transition disorientation to the power of the exponent
+"RHModelLAGBHAGBTrans"			"5.0"
+"RHModelLAGBHAGBExponent"		"9.0"
+
+
+|| RecoveryParameter		|| *(ss)	|| Parameter, Value
+"RecoveryConsider"				"0"			// 1 - Nes lateral jog drift controlled thermally activated glide aka vacancy diffusion controlled, 2 - Nes solute diffusion aka drag  ontrolled network growth, otherwise no recovery
+"RecoveryVacancyDiffGeometry"	"1.0"		// Vacancy core diffusion model parameter
+"RecoveryVacancyDiffPreexp"		"1.0"		// Vacancy core diffusion preexponential
+"RecoveryVacancyDiffHact"		"2.9"		// eV, Vacancy core diffusion activation enthalpy
+"RecoverySoluteDiffPreexp"		"1.0"		// Solute drag diffusion model preexponential
+"RecoverySoluteDiffHact"		"1.6"		// eV, Solute drag diffusion activation enthalpy
+"RecoverySoluteLsPropFactor"	"1.0"		// Solute drag solute pinning point distance proportionality factor
+"RecoverySoluteConcentration"	"1.0"		// Solute drag solute concentration
+"RecoveryParameterAlpha3"		"1.0"		// Nes model alpha3 constant
+"RecoveryParameterKappa2"		"0.1"		// Nes model jog separation kappa2 constant	
+"RecoveryParameterC3"			"1.0"		// Nes model C3 parameter
+"RecoveryParameterC4"			"1.0"		// Nes model C4 parameter
+"RecoveryParameterC5"			"0.65"		// Nes model C5 parameter
+
+|| ZenerDragParameter		|| *(ss)	|| Parameter, Value
+"ZenerConsider"					"0"			// 0 switched off, 1 constant, 2 timedependent in accord with fr evolution
+"ZenerAlpha"					"1.5"		// 1.5gammaHAGB 0.324 J/m^2 from MeyersMurr Interfacial
+"ZenerGamma"					"0.324"		// f over r we take the first entry from EvoDragging Particles
+
+
+|| IdealComponents			|| 	*(sffff)		|| Name, IdealcomponentBunge1, IdealcomponentBunge2, IdealcomponentBunge3, each component only counted one and to the closest all other are random, random is has ID zero
+"Gamma111-110"			60.0		55.0		45.0		10.0
+"NucAlpha"			0.0		30.0		45.0		2.0
+
+
+|| RenderMicrostructure	||	*(sf)	|| Local recrystallized fraction, local value
+"X"		0.25
+"X"		0.50
+"X"		0.75
+"X"		1.00
+
+
+|| RenderOnlyTheseRegions || *(i) || CAID indices start from 0 to n minus one
+0
+
+
+|| ProcessingSchedule		||	*(ff)			|| time, temperature linearized heating profiles
+0.0								500.0
+3600.0							500.0
+36000.0							500.0
+
+
+|| EvoDraggingParticles		||  *(ff)			|| time, fr
+0.0								0.00E+0
+3600.0							0.00E+0
+
+
+|| DeformedGrainsPool		|| *(ffffff)        || Bunge e1, Bunge e2, Bunge e3, rho0, dsubav0, disoriav0
+60.0		55.0		45.0		1.0E+15		0.0			5.0
+
+
+|| RXGrainsPool				|| *(ffff)		|| Bunge e1, Bunge e2,  Bunge e3, tincub
+0.0			30.0		45.0		0.0
+
+
+|| HeuristicRXFrontListDefragmentation	||	*(sf)	|| Recrystallized fraction, local value
+"X"		0.60
+"X"		0.65
+"X"		0.70
+"X"		0.75
+"X"		0.80
+"X"		0.85
+"X"		0.90
+"X"		0.92
+"X"		0.94
+"X"		0.96
+"X"		0.98
+"X"		0.99
+"X"		0.999
+"X"		0.9999
+
+
+|| SingleGrainVolOverTime	||  *(sf)		|| Recrystallized fraction, local value
+"X"		0.00
+"X"		0.01	
+"X"		0.02
+"X"		0.03
+"X"		0.04
+"X"		0.05
+"X"		0.06
+"X"		0.07
+"X"		0.08
+"X"		0.09
+"X"		0.10
+"X"		0.11
+"X"		0.12
+"X"		0.13
+"X"		0.14
+"X"		0.15
+"X"		0.16
+"X"		0.17
+"X"		0.18
+"X"		0.19
+"X"		0.20
+"X"		0.21
+"X"		0.22
+"X"		0.23
+"X"		0.24
+"X"		0.25
+"X"		0.26
+"X"		0.27
+"X"		0.28
+"X"		0.29
+"X"		0.30
+"X"		0.31
+"X"		0.32
+"X"		0.33
+"X"		0.34
+"X"		0.35
+"X"		0.36
+"X"		0.37
+"X"		0.38
+"X"		0.39
+"X"		0.40
+"X"		0.41
+"X"		0.42
+"X"		0.43
+"X"		0.44
+"X"		0.45
+"X"		0.46
+"X"		0.47
+"X"		0.48
+"X"		0.49
+"X"		0.50
+"X"		0.51
+"X"		0.52
+"X"		0.53
+"X"		0.54
+"X"		0.55
+"X"		0.56
+"X"		0.57
+"X"		0.58
+"X"		0.59
+"X"		0.60
+"X"		0.61
+"X"		0.62
+"X"		0.63
+"X"		0.64
+"X"		0.65
+"X"		0.66
+"X"		0.67
+"X"		0.68
+"X"		0.69
+"X"		0.70
+"X"		0.71
+"X"		0.72
+"X"		0.73
+"X"		0.74
+"X"		0.75
+"X"		0.76
+"X"		0.77
+"X"		0.78
+"X"		0.79
+"X"		0.80
+"X"		0.81
+"X"		0.82
+"X"		0.83
+"X"		0.84
+"X"		0.85
+"X"		0.86
+"X"		0.87
+"X"		0.88
+"X"		0.89
+"X"		0.90
+"X"		0.91
+"X"		0.92
+"X"		0.93
+"X"		0.94
+"X"		0.95
+"X"		0.96
+"X"		0.97
+"X"		0.98
+"X"		0.99
+"X"		1.00

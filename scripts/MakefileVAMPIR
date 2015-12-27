@@ -1,0 +1,34 @@
+SHELL = /bin/bash
+PROG = pingPong
+SRC = ../src/lodepng.cpp ../src/SCORE_Definitions.cpp ../src/SCORE_Io.cpp ../src/SCORE_Main.cpp ../src/SCORE_Math.cpp ../src/SCORE_Random.cpp ../src/SCORE_Kernel.cpp
+EXE = $(PROG).exe
+NPROCS = 2
+
+all: clean release run
+
+debug:
+	$(MPICXX) $(FLAGS_DEBUG) $(SRC) -o $(EXE) -lm
+
+release:
+	$(MPICXX) $(FLAGS_FAST) $(SRC) -o $(EXE) -lm
+
+run:
+	@echo "Usage: make run [NPROCS=<#procs>]"
+	${MPIEXEC} -np $(NPROCS) $(EXE) SCORE.Input.1.uds 1
+
+analyze: release
+	rm -rf test.1.er
+	module load studio; ${MPIEXEC} -np $(NPROCS) collect -m on $(EXE); analyzer test.1.er;
+
+totalview: debug
+	module load totalview; ${MPIEXEC} -np $(NPROCS) -tv $(EXE) SCORE.Input.1.uds 1
+
+$(PROG).otf:
+	module load UNITE vampirtrace; VT_MAX_FLUSHES=0 MPIEXEC="$(MPIEXEC) -x LD_LIBRARY_PATH -x VT_MAX_FLUSHES" MPICXX="vtcxx -vt:cxx $(MPICXX)" gmake clean debug run
+#VT_MAX_FLUSHES gmake
+vampir: $(PROG).otf
+	module load UNITE vampir; vampir $(PROG).otf
+
+clean:
+	@rm -f $(EXE) core* *.o *.mod a.out 
+	@rm -f $(PROG).otf $(PROG).*.z

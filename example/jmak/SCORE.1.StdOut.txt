@@ -1,0 +1,55 @@
+kuehbach@lx16:~/SCORE/build> mpiexec -n 1 score_gccO2 SCORE.Input.TemplateIron.uds 1
+SCORe - Statistical Cellular Operator Ensemble Model for Recrystallization.
+defcell=24
+cell=32
+rxg=16
+defg=56
+ori=64
+qsymmfcc=32
+cadefg=64
+carxg=24
+ideal=64
+loginfophys=64
+defgseed=12
+cellsBndFast=8
+bndFaceFast=48
+bndColumnFast=16
+loginfogrevo=40
+loginfo_rxfront=72
+ensHdl=6064
+caHdl=8856
+Inacceptable low discretization for this high number of nuclei.
+I have been made familiar with 2 ideal texture components that are used for texture volume analyses.
+14, logpoints for RXFront defragmentation were initialized as desired and sorted ascending.
+101, logpoints for X were initialized as desired and sorted in ascending order.
+1, is the upper limit for RXFRACTION numerical integration scheme.
+36000, is the upper limit for REALTIME numerical integration scheme.
+0.2, is the initial recaching value.
+1, is the total number of automata in the MPI_COMM_WORLD.
+1e-06, is the cellsize.
+0.1, is the MAXFILLPERSTEP.
+200;200;200, is RD x ND x TD CA geometry.
+0.0012,0.0012,0.0012, defgmedian_rdndtd.
+8.5e+10,2.5e-10, ShearModulus/Burgersvector.
+0.3,3,3,  LAGB/HAGB/GS m0.
+1.92261e-19,1.92261e-19,1.92261e-19, LAGB/HAGB/GS Hact=
+Initial parameter have been loaded successfully.
+All deformed grains have been successfully imported, highest dislocation density detected  is.
+1 recrystallizing grain orientations have been successfully imported.
+The work has been partitioned onto the processes.
+myRank 0; JobID 0 voxelization was successful.
+myRank 0; JobID 0 initial texture determined.
+myRank 0; JobID 0 nucleated site-saturated.
+Rendering a section__SCORE.1.JobID.0.XYIter.85.X.0252.IPFZ.png__ at 200;200;100
+Rendering a section__SCORE.1.JobID.0.XYIter.115.X.0506.IPFZ.png__ at 200;200;100
+Rendering a section__SCORE.1.JobID.0.XYIter.145.X.0752.IPFZ.png__ at 200;200;100
+Rendering a section__SCORE.1.JobID.0.XYIter.308.X.1000.IPFZ.png__ at 200;200;100
+0 myRank,jobid = 0 local CA simulation was successfully executed, tsimend = 468.308, stepsimend = 309
+The MASTER has output profiling information regarding the simulation.
+The overall worldmax_tsimend is between 468.308 and 468.308
+Master outputs his own results nid=947
+Simulation finished with some new insights into pRX, skal.
+MASTER exiting MPI_init prior to starting postprocessing seconds=5.55981
+MASTER starting postprocessing and prior to MPI_Finalize seconds=0.12557
+MASTER total time seconds=5.68538
+kuehbach@lx16:~/SCORE/build>

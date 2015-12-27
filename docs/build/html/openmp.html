@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Further details for developers. &mdash; SCORE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="SCORE 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Learn about past 3D CA modeling activities" href="references.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="references.html" title="Learn about past 3D CA modeling activities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">SCORE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="further-details-for-developers">
+<h1>Further details for developers.<a class="headerlink" href="#further-details-for-developers" title="Permalink to this headline">¶</a></h1>
+<p>In contrast to the pure MPI version in which each automaton domain expands completely in one implicit array (the <strong>mycellgrid</strong>),
+the hybrid version subdivides statically this grid in the y and the z direction. Each such automaton region is now handled by the
+<strong>caregionMemHdl</strong> class which allocates storage and bookkeeps two interface lists. According to this list, cells are either categorized as located completely in the simulation domain or close to its boundary, which is a one cell thick layer.</p>
+<p>The cells that are close to this boundary require synchronization with other regions to avoid data races and to maintain a consistent
+view of the infection states. For this <strong>halo</strong> regions are defined, into which the threads first infect in parallel, then synchronize <strong>syncHalo</strong>
+and again read out in parallel the changes that occurred in the halo regions and require synchronization in the corresponding memory regions.
+This minimizes thread synchronization.</p>
+<p>At the moment the cell list defragmentation functionality is disabled.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="references.html"
+                        title="previous chapter">Learn about past 3D CA modeling activities</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/openmp.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="references.html" title="Learn about past 3D CA modeling activities"
+             >previous</a> |</li>
+        <li><a href="index.html">SCORE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Markus Kuehbach, IMM, RWTH Aachen University.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
