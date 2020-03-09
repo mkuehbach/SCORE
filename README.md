@@ -13,5 +13,8 @@ in the frame of the BiGmax, the Max-Planck-Society's Research Network on Big-Dat
 Latest bugfixes:
 - 2016/01/13: uncomment the line #define DEBUG in src/SCORE_Io.h when utilizing the GNU compiler
 - 2019/02/23: we implemented a right-handed coordinate system and made modifications to use the code
-for the following paper. M. Diehl and M. Kuehbach, Coupled experimental-computational analysis of primary static recrystallization in low carbon steel",
+for the following paper. Now it is required that the code gets linked to a static local installation of the
+Hierarchical Data Format 5 (HDF5) library.
+M. Diehl and M. Kuehbach, Coupled experimental-computational analysis of primary static recrystallization in low carbon steel",
 Modelling and Simulation in Materials Science and Engineering, 28, 2020, http://doi.org/10.1088/1361-651X/ab51bd
+Further details to this study and example input data are available here: http://www.zenodo.org/record/2540525
